@@ -2,8 +2,6 @@ package uvg.edu.gt;
 
 import junit.framework.TestCase;
 
-import junit.framework.TestCase;
-
 public class cond2Test extends TestCase {
     cond2 c=new cond2();
 

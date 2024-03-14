@@ -1,7 +1,7 @@
 package uvg.edu.gt;
 
 
-import java.util.*; //Importando todas las clases por si acaso.
+import java.util.ArrayList;
 
 //Referencia teórica: http://www.lee-mac.com/quote.html
 public class QUOTE {

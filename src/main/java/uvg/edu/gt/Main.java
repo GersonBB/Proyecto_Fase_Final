@@ -1,103 +1,134 @@
 package uvg.edu.gt;
-
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
+import java.util.Scanner;
+
+
+
+import java.util.Scanner;
+
 public class Main {
-    public static  void main(String[] args){
-        /***
-         *Instancia necesarias para que funcione el main
-         */
-        Calculadora_mega esperanza = new Calculadora_mega();
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Calculadora_mega calculadora = new Calculadora_mega();
+        Vector<String> operaciones = new Vector<String>();
 
-        Vector <String> varios = new Vector<String>();
+        // Modifica la ruta del archivo de texto
+        String rutaArchivo = "C:\\Users\\gerso\\OneDrive\\Escritorio\\Proyecto_Fase2\\src\\main\\java\\uvg\\edu\\gt\\datos.txt";
 
-        /***
-         * try que lee el archivo.txt haciendo que cada linea se agregue al vector a modo de String
-         */
-        try{
-            FileReader r = new FileReader("datos.txt");
+        try {
+            FileReader r = new FileReader(rutaArchivo);
             BufferedReader buffer = new BufferedReader(r);
 
-            String temp ="";
+            String temp = "";
 
-            while(temp!=null){
-                temp = buffer.readLine();
-                if(temp == null){
+            while ((temp = buffer.readLine()) != null) {
+                operaciones.add(temp);
+            }
+            buffer.close(); // Es buena práctica cerrar el BufferedReader
+        } catch (Exception e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+
+        // Menú principal
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("Bienvenido al Intérprete LISP");
+            System.out.println("---------------------------------------");
+            System.out.println("1. Ejecutar operaciones desde archivo");
+            System.out.println("2. Ingresar operaciones manualmente");
+            System.out.println("3. Salir");
+            System.out.print("Seleccione una opción: ");
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
+
+            switch (opcion) {
+                case 1:
+                    ejecutarOperacionesDesdeArchivo(operaciones, calculadora);
                     break;
-                }
-                varios.add(temp);
-
+                case 2:
+                    ingresarOperacionesManualmente(scanner, calculadora);
+                    break;
+                case 3:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
             }
-        }catch(Exception e){
-            System.out.println("archivo no encontrado");
         }
 
+        scanner.close();
+    }
 
-        /***
-         * Segun la cantidad de instrucciones en formato LISP que existan en el vector a cada una se le aplica la operación de
-         * calculo de la clase Calculadora_mega devolviendo el resultado final.
-         */
-        /***
-         * Se imprime todas las operaciones encontradas en el archivo txt
-         */
-        System.out.println();
+    private static void ejecutarOperacionesDesdeArchivo(Vector<String> operaciones, Calculadora_mega calculadora) {
         System.out.println("Operaciones archivo txt");
-        System.out.println();
-        for(int a =0;a<varios.size();a++){
-            System.out.println(varios.get(a));
+        for (String operacion : operaciones) {
+            System.out.println(operacion);
         }
-        /***
-         * Se imprimen los resultados de las instrucciones del txt
-         */
-        System.out.println();
+
         System.out.println("Resultados txt");
-        System.out.println();
-        for(int a =0;a<varios.size();a++){
-            System.out.println(" "+esperanza.Calculo(varios.get(a)));
-        }
-
-
-        Scanner scan = new Scanner(System.in);
-
-        String instruccion ="";
-        System.out.println("\n______________________-----------------------------------______________________");
-        System.out.println("______________________----------LISP Interprete ------" +
-                "" +
-                "---______________________");
-        System.out.println("______________________-----------------------------------______________________");
-        System.out.println();
-        System.out.println();
-
-        /***
-         * Luego de leer el txt e imprimir los resultados, se da paso al inicio del interprete
-         * dando opcion al usuario que ingrese instrucciones LISP
-         * para finaliar el programa el usuario puede escribir la instruccion (exit)
-         */
-
-        boolean interprete = true;
-        int numero = 0;
-        while(interprete ==  true){
-            numero++;
-            System.out.print(" CL-USER "+numero+" > ");
-            instruccion = scan.nextLine();
-            if (instruccion.equals("( exit )")||instruccion.equals("(exit)")) {
-                interprete = false;
-            }else{
-                try{
-                    System.out.println(" "+esperanza.Calculo(instruccion));
-                    System.out.println();
-                }catch(Exception e){
-                    System.out.println(" Error");
-                    System.out.println();
-                }
-
+        for (String operacion : operaciones) {
+            try {
+                System.out.println(" " + calculadora.Calculo(operacion));
+            } catch (Exception e) {
+                System.out.println("Error al procesar la operación.");
             }
-
-
         }
     }
 
+    private static void ingresarOperacionesManualmente(Scanner scanner, Calculadora_mega calculadora) {
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Seleccione el tipo de operación que desea realizar:");
+            System.out.println("1. SETQ");
+            System.out.println("2. EQUAL");
+            System.out.println("3. LIST");
+            System.out.println("4. ATOM");
+            System.out.println("5. COND");
+            System.out.println("6. Salir al menú principal");
+            System.out.print("Seleccione una opción: ");
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("Ha seleccionado SETQ. Ingrese la operación LISP: ");
+                    break;
+                case 2:
+                    System.out.println("Ha seleccionado EQUAL. Ingrese la operación LISP: ");
+                    break;
+                case 3:
+                    System.out.println("Ha seleccionado LIST. Ingrese la operación LISP: ");
+                    break;
+                case 4:
+                    System.out.println("Ha seleccionado ATOM. Ingrese la operación LISP: ");
+                    break;
+                case 5:
+                    System.out.println("Ha seleccionado COND. Ingrese la operación LISP: ");
+                    break;
+                case 6:
+                    System.out.println("Saliendo al menú principal...");
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+            }
+
+            if (opcion >= 1 && opcion <= 5 && continuar) {
+                System.out.print("Ingrese la operación LISP: ");
+                String operacion = scanner.nextLine();
+                try {
+                    System.out.println("Resultado: " + calculadora.Calculo(operacion));
+                } catch (Exception e) {
+                    System.out.println("Error al procesar la operación. Por favor, intente nuevamente.");
+                }
+            } else if (opcion == 6) {
+                continuar = false;
+            }
+        }
+    }
 }

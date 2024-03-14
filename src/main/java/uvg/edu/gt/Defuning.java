@@ -1,12 +1,7 @@
 package uvg.edu.gt;
 
 
-
-import java.util.Scanner;
-import java.io.*;
-import java.util.Vector;
 import java.util.ArrayList;
-import java.util.Collections;
 public class Defuning{
     /***
      * instancia necesarias para el funcionamiento.
