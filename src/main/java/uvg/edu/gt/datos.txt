@@ -20,4 +20,5 @@
 (defun prueba (t) (+ t t))
 (defun fc (t) (* 0.55555555556 (- t 32)))
 (defun fibonacci (n) (cond ( (< n 2) n) (t (+ (fibonacci (- n 1)) (fibonacci (- n 2))))))
-(defun facorial (x) ( cond ( ( < x 2 ) 1 ) ( t ( * x ( facorial ( - x 1 ) ) ) ) ) )
+(defun factorial (x) ( cond ( ( < x 2 ) 1 ) ( t ( * x ( factorial ( - x 1 ) ) ) ) ) )
+(factorial 3)
