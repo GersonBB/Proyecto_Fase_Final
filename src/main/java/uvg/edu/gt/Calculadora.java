@@ -18,7 +18,6 @@ public class Calculadora implements CalculadoraGeneral{
         String str1 = "";
 
 
-
         for (int i = 0; i < expresion.length(); i++){
             if(String.valueOf(expresion.charAt(i)).equals(")")||String.valueOf(expresion.charAt(i)).equals("(")){
 
