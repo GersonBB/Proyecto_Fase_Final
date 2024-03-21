@@ -2,8 +2,6 @@ package uvg.edu.gt;
 
 import junit.framework.TestCase;
 
-import junit.framework.TestCase;
-
 public class CalculadoraTest extends TestCase {
     Calculadora c=new Calculadora();
     public void testCalculo() {
