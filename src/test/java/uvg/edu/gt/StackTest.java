@@ -4,163 +4,44 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StackTest {
 
-        @org.junit.jupiter.api.Test
-        void push() {
-            Stack<Integer> stack = new Stack<Integer>() {
-                @Override
-                public void push(Integer num) {
+            @org.junit.jupiter.api.Test
+            void push() {
+                StackVector<Integer> stack = new StackVector<>();
+                stack.push(1);
+                stack.push(2);
+                stack.push(3);
+                assertEquals(3, stack.size());
+            }
 
-                }
+            @org.junit.jupiter.api.Test
+            void pop() {
+                StackVector<Integer> stack = new StackVector<>();
+                stack.push(1);
+                stack.push(2);
+                stack.push(3);
+                assertEquals(3, stack.pop());
+                assertEquals(2, stack.pop());
+                assertEquals(1, stack.pop());
+            }
 
-                @Override
-                public boolean empty() {
-                    return false;
-                }
+            @org.junit.jupiter.api.Test
+            void empty() {
+                StackVector<Integer> stack = new StackVector<>();
+                assertTrue(stack.empty());
+                stack.push(1);
+                assertFalse(stack.empty());
+            }
 
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public Integer pop() {
-                    return null;
-                }
-
-                @Override
-                public Integer peek() {
-                    return null;
-                }
-            };
-            stack.push(1);
-            assertEquals(1, stack.size());
-        }
-
-        @org.junit.jupiter.api.Test
-        void empty() {
-            Stack<Integer> stack = new Stack<Integer>() {
-                @Override
-                public void push(Integer num) {
-
-                }
-
-                @Override
-                public boolean empty() {
-                    return false;
-                }
-
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public Integer pop() {
-                    return null;
-                }
-
-                @Override
-                public Integer peek() {
-                    return null;
-                }
-            };
-            assertEquals(true, stack.empty());
-        }
-
-        @org.junit.jupiter.api.Test
-        void size() {
-            Stack<Integer> stack = new Stack<Integer>() {
-                @Override
-                public void push(Integer num) {
-
-                }
-
-                @Override
-                public boolean empty() {
-                    return false;
-                }
-
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public Integer pop() {
-                    return null;
-                }
-
-                @Override
-                public Integer peek() {
-                    return null;
-                }
-            };
-            stack.push(1);
-            assertEquals(1, stack.size());
-        }
-
-        @org.junit.jupiter.api.Test
-        void pop() {
-            Stack<Integer> stack = new Stack<Integer>() {
-                @Override
-                public void push(Integer num) {
-
-                }
-
-                @Override
-                public boolean empty() {
-                    return false;
-                }
-
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public Integer pop() {
-                    return null;
-                }
-
-                @Override
-                public Integer peek() {
-                    return null;
-                }
-            };
-            stack.push(1);
-            assertEquals(1, stack.pop());
-        }
-
-        @org.junit.jupiter.api.Test
-        void peek() {
-            Stack<Integer> stack = new Stack<Integer>() {
-                @Override
-                public void push(Integer num) {
-
-                }
-
-                @Override
-                public boolean empty() {
-                    return false;
-                }
-
-                @Override
-                public int size() {
-                    return 0;
-                }
-
-                @Override
-                public Integer pop() {
-                    return null;
-                }
-
-                @Override
-                public Integer peek() {
-                    return null;
-                }
-            };
-            stack.push(1);
-            assertEquals(1, stack.peek());
-        }
+            @org.junit.jupiter.api.Test
+            void size() {
+                StackVector<Integer> stack = new StackVector<>();
+                assertEquals(0, stack.size());
+                stack.push(1);
+                assertEquals(1, stack.size());
+                stack.push(2);
+                assertEquals(2, stack.size());
+                stack.push(3);
+                assertEquals(3, stack.size());
+            }
 
 }

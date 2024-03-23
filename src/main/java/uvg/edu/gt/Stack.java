@@ -1,7 +1,6 @@
 package uvg.edu.gt;
 
 /***
- * @author Gabriel Vicente \\ Pablo Gonzales \\ Javier Valle
  * Clase Traductor que implementa la calculadora.java para realizar las operaciones mas complejas
  */
 public interface Stack<T> {
